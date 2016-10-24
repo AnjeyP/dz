@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>battle_ship_2d</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script>
+window.onload = init;
+function init(){
+
+		getId = function (id) {
+					var getId = document.getElementById(id);
+					return getId;
+				}
+		getTagname = function (tag) {
+					var getTagname = document.getElementsByTagName(tag);
+					return getTagname;
+				}
+		
+		var shot = 0;
+		var hit = 0;
+		var td = getTagname('td');
+
+		for (var i=0;i<td.length; i++){
+				td[i].onclick = function(){
+					if (this.innerHTML=="") {
+						this.innerHTML="<span class='glyphicon glyphicon-remove'></span>";
+						getId("shot").innerHTML = "SHOTS:"+(++shot);
+					}
+					else if (this.innerHTML[1] == "i") {
+						this.innerHTML ="<i class='fa fa-ship' style='font-size:36px; display: block;'></i>";
+						getId("hit").innerHTML = "HITS:"+(++hit);
+						getId("shot").innerHTML = "SHOTS:"+(++shot);
+						if (hit==7) alert("All ships is sunked! You need only "+shot+" to do it!");
+					}
+				}
+		}
+}	
+
+
+</script>
+
+<style>
+
+td{
+	width: 60px;
+	height: 60px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+table{
+	margin-left: 400px;
+	margin-top: 50px;
+}
+
+td:nth-child(1){
+	border:none;
+}
+/*tr:nth-child(8){ it doesn't work I don't know why
+	border:none;
+}*/
+
+</style>
+</head>
+<body>
+<table>
+	<tr>
+		<td>a</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>b</td>
+		<td id="ship"><i class="fa fa-ship" style="font-size:36px; display: none;"></i></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td id="ship"><i class="fa fa-ship" style="font-size:36px; display: none;"></i></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>c</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td id="ship"><i class="fa fa-ship" style="font-size:36px; display: none;"></i></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>d</td>
+		<td></td>
+		<td></td>
+		<td id="ship"><i class="fa fa-ship" style="font-size:36px; display: none;"></i></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>e</td>
+		<td></td>
+		<td id="ship"><i class="fa fa-ship" style="font-size:36px; display: none;"></i></td>
+		<td id="ship"><i class="fa fa-ship" style="font-size:36px; display: none;"></i></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>f</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td id="ship"><i class="fa fa-ship" style="font-size:36px; display: none;"></i></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>g</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td style="border:none;">0</td>
+		<td style="border:none;">1</td>
+		<td style="border:none;">2</td>
+		<td style="border:none;"> 3</td>
+		<td style="border:none;">4</td>
+		<td style="border:none;">5</td>
+		<td style="border:none;">6</td>
+	</tr>
+	<p id="shot"></p>
+	<p id="hit"></p>
+</table>
+</body>
+</html>
