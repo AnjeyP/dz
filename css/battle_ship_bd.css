@@ -1,0 +1,45 @@
+body{
+    background-image: url("battle_field.png");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 300px 60px;
+}
+input[type="submit"], button{
+    background-color: lightblue;
+    border-radius: 3px;
+}
+input, button{
+    position: absolute;
+    top: 568px;
+    left: 500px;
+}
+input[type="submit"]{
+    left: 674px;
+}
+button#btn{
+    left: 315px;
+}
+div{
+    position: absolute;
+    top: 30px;
+    left: 315px;
+    width: 628px;
+    height: 30px;
+    text-align: center;
+    padding: 5px;
+}
+td{
+    width: 64px;
+    height: 63px;
+    text-align: center;
+}
+
+table{
+    position: absolute;
+    border-collapse: collapse;
+    top: 68px;
+    left: 428px;
+}
+span{
+    color: #ff0000;
+}
