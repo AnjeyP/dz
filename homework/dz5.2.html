@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>battleship</title>
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 100px;
+			border: solid black 1px;
+			float: left;
+			margin: 1px;
+			background-color: green;
+			border-radius: 4%;
+		}
+		
+	</style>
+	<script type="text/javascript">
+		
+		var
+			loc1,loc2,loc3, //ship location
+			guess, //try
+			isSunk = false, //flag stansd for sunk or not
+			guessAmount = 0, //ammout of tries
+			shotAmount = 0, // ammount of shots
+			divMass; //parametr for vizualization
+
+		loc1 = Math.round(Math.random()*6); //random location of first section of the ship
+
+		console.log(loc1);
+
+		if (loc1<=4){						//calculation of 2d and 3d section of the ship
+			loc2=loc1+1;
+			loc3=loc2+1;					//if I use loc3 = ++loc2 - error calculation, why?
+		}
+		else {								//calculation of 2d and 3d section of the ship
+			loc2=loc1-1;
+			loc3=loc2-1;
+		}
+
+		console.log(loc2);
+		console.log(loc3);
+
+		while (isSunk == false) {
+			guess = prompt('Ready,aim,fire!(enter a number from 0-6):');
+			if (guess<0 || guess>6) guess = prompt("Ready,aim,fire!(enter a number from 0-6):");
+			
+			else if (guess == loc1||guess == loc2||guess == loc3){
+				guessAmount++;
+				shotAmount++;
+				
+				if (shotAmount == 3){
+					isSunk = true;
+					if (guessAmount == 3) alert("You've won! Ship is sunk! Flawless victory!");
+					else alert("You've won! Ship is sunk! You need "+guessAmount+" tries to make it");
+				}
+				else alert("Congrats! You hit the ship! Go ahead!");
+			}
+			else{
+				guessAmount++;
+				alert("Sorry! You've missed up! Try once more!");
+			}
+		}
+		//next code block is used for vizualization
+		window.onload = function(){
+
+			divMass = document.getElementsByTagName('div');
+
+			function getData(){
+			for (var i = 0; i < divMass.length; i++)
+						if (divMass[i].id == loc1 || divMass[i].id == loc2 || divMass[i].id == loc3 ) divMass[i].style.backgroundColor = "red";
+						
+			}
+			getData();
+		}
+	</script>
+</head>
+<body>
+	<div id="0"></div>
+	<div id="1"></div>
+	<div id="2"></div>
+	<div id="3"></div>
+	<div id="4"></div>
+	<div id="5"></div>
+	<div id="6"></div>
+</body>
+</html>

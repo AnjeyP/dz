@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>rateCalc</title>
+	<meta charset="utf-8">
+	<script>
+		window.onload = init;
+
+		function init() {
+
+			getId = function (id) {
+				var getId = document.getElementById(id);
+				return getId;
+			}
+						
+			const RENT = 5000;
+			var totalValue = getId('Total');
+			var needToPayValue = getId('needToPay')
+			var button = getId('btn');
+			
+			function costCalc(Current, Previous, Difference, Rate, Cost) {
+
+				var currentValue = getId(Current);
+				var previousValue = getId(Previous);
+				var diffValue = getId(Difference);
+				var rateValue = getId(Rate);
+				var costValue = getId(Cost);
+				diffValue.innerHTML = currentValue.value - previousValue.value;
+				costValue.value = (Number(diffValue.innerHTML)*rateValue.value).toFixed(2);
+				return +costValue.value
+			}
+
+			function totalCalc(){
+				totalValue.value = (costCalc("Current1", "Previous1", "Difference1", "Rate1", "Cost1")+
+											costCalc("Current2", "Previous2", "Difference2", "Rate2", "Cost2")+
+												costCalc("Current3", "Previous3", "Difference3", "Rate3", "Cost3")+
+													costCalc("Current4", "Previous4", "Difference4", "Rate4", "Cost4")).toFixed(2);
+				needToPayValue.value = (RENT+ +totalValue.value).toFixed(2);
+			}
+
+			function needToPayCalc(){
+				
+				getId("Current1").onchange = function () {
+					totalCalc();
+					
+				}
+				getId("Current2").onchange = function () {
+					getId("Current4").value = getId("Current2").value;
+					totalCalc();
+					
+				}
+				getId("Current3").onchange = function () {
+					totalCalc();
+					
+				}
+				getId("Current4").onchange = function () {
+					getId("Current2").value = getId("Current4").value;
+					totalCalc();
+					
+				}
+				
+				getId("Previous1").onchange = function () {
+					totalCalc();
+					
+				}
+				getId("Previous2").onchange = function () {
+					getId("Previous4").value = getId("Previous2").value;
+					totalCalc();
+					
+				}
+				getId("Previous3").onchange = function () {
+					totalCalc();
+					
+				}
+
+				getId("Previous4").onchange = function () {
+					getId("Previous2").value = getId("Previous4").value;
+					totalCalc();
+				}
+
+				getId("Rate1").onchange = function () {
+					totalCalc();
+				}
+				getId("Rate2").onchange = function () {
+					totalCalc();
+				}
+				getId("Rate3").onchange = function () {
+					totalCalc();
+				}
+				getId("Rate4").onchange = function () {
+					totalCalc();
+				}
+
+				
+			}
+			
+			needToPayCalc();
+		}
+
+	</script>	
+	<style>
+		table{
+			border-collapse: collapse;
+		}
+		tr, td, th {
+			border: 1px solid black;
+			text-align: center;
+		}
+		input{
+			width: auto;
+			border: none;
+			
+		}
+		table{
+			width:auto;
+		}
+	</style>
+</head>
+<body>
+	<table>
+  <tr>
+    <th>Order</th>
+    <th>Current</th>
+    <th>Previous</th>
+	<th>Difference</th>
+	<th>Rate</th>
+	<th>Cost</th>
+	<th>Total</th>
+	<th>Need to Pay</th>
+  </tr>
+  <tr>
+    <td>Cold Water</td>
+    <td><input type="number" name="Current1" id="Current1" value="0"></td>
+    <td><input type="number" name="Previous1" id="Previous1" value="0"></td> 
+    <td id='Difference1'></td>
+    <td><input type="number" name="Rate1" id="Rate1" value="13.77"></td>
+    <td><input type="number" name="Cost1" id="Cost1" value="0"></td>
+    <td><input type="number" name="Total" id="Total" value="0"></td>
+    <td><input type="number" name="needToPay" id="needToPay" value="0"></td>
+  </tr>
+  <tr>
+    <td>Hot Water</td>
+    <td><input type="number" name="Current2" id="Current2" value="0"></td>
+    <td><input type="number" name="Previous2" id="Previous2" value="0"></td> 
+    <td id='Difference2'></td>
+    <td><input type="number" name="Rate2" id="Rate2" value="76.71"></td>
+     <td><input type="number" name="Cost2" id="Cost2" value="0"></td>
+    
+  </tr>
+  <tr>
+     <td>Electric Power</td>
+    <td><input type="number" name="Current3" id="Current3" value="0"></td>
+    <td><input type="number" name="Previous3" id="Previous3" value="0"></td> 
+    <td id='Difference3'></td>
+    <td><input type="number" name="Rate3" id="Rate3" value="42.84"></td>
+     <td><input type="number" name="Cost3" id="Cost3" value="0"></td>
+   
+  </tr>
+  <tr>
+    <td>Hot Water Discharge</td>
+    <td><input type="number" name="Current4" id="Current4" value="0"></td>
+    <td><input type="number" name="Previous4" id="Previous4" value="0"></td> 
+    <td id='Difference4'></td>
+    <td><input type="number" name="Rate4" id="Rate4" value="6.93"></td>
+     <td><input type="number" name="Cost4" id="Cost4" value="0"></td>
+   
+  </tr>
+</table></br>
+<button id="btn">Save</button>
+</body>
+</html>

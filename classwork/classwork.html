@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		var scores = [60,50,60,58,55,54,50,52];
+		for (var i=0;i<scores.length;i++) {
+		console.log("Bubble solution #" + i + " score:" + scores[i]);
+		}
+
+		console.log("Highest bubble score:" + printAndGetHighScore(scores)); //пример с function declaration
+
+		function printAndGetHighScore(array) { //пример с function declaration
+				var highScore = 0;	
+				for (var i=0;i<scores.length;i++) {
+				if(scores[i]>highScore) {
+				highScore = scores[i];
+				}
+			}
+			return highScore;
+			console.log("Highest bubble score:" + highScore); // после ретерна ничего не выводится
+		}
+		
+		
+		console.log("Solutions with the highest score: " + getBestSolutions(scores, printAndGetHighScore(scores))); //- не будет работать потому что вызвано раньше чем объявлено
+		getBestSolutions = function(array, highScore) {
+				var bestSolutions = [];
+				for (var i=0; i<scores.length; i++) {
+						if (scores[i] == highScore){
+						bestSolutions.push(i);
+					}
+				}
+				return bestSolutions;
+				console.log("Solutions with the highest score: " + bestSolutions);
+		}
+
+		console.log("************************************************************");
+
+		//var highScore = printAndGetHighScore(scores);
+		//console.log("Highest bubble score:" + highScore);
+		//console.log("Solutions with the highest score: " + getBestSolutions(scores, printAndGetHighScore(scores)));
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

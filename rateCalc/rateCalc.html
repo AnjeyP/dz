@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>rateCalc</title>
+	<meta charset="utf-8">
+	<script>
+		window.onload = init;
+		function init() {
+			getRate = function (rate) {
+				var rateValue = document.getElementById(rate);
+				return rateValue.value;
+			}
+			
+			diffCalc = function (Current, Previous, Difference) {
+				var currentValue = document.getElementById(Current);
+				var previousValue = document.getElementById(Previous);
+				var diffValue = document.getElementById(Difference);
+				
+				currentValue.onchange = function () {
+					diffValue.innerHTML = currentValue.value - previousValue.value;
+					console.log(typeof diffValue.innerHTML);
+				}
+				previousValue.onchange = function () {
+					diffValue.innerHTML = currentValue.value - previousValue.value;
+					console.log(typeof diffValue.innerHTML);
+				}
+				return Number(diffValue.innerHTML);
+			}
+			/*costCalc = function (rate, cost) {
+				costValue = document.getElementById(cost);
+				document.getElementById(rate).onchange = function() {
+					costValue.innerHTML = getRate(rate)*diffCalc("Current1", "Previous1", "Difference1");;
+				}
+				document.getElementById('Difference1').onchange = function() {
+					costValue.innerHTML = getRate(rate)*diffCalc("Current1", "Previous1", "Difference1");;
+				}
+				return Number(costValue.innerHTML);
+				
+			}*/
+			/*var diffCalc1 = */diffCalc("Current1", "Previous1", "Difference1");
+			//console.log(diffCalc1);
+			diffCalc("Current2", "Previous2", "Difference2");
+			diffCalc("Current3", "Previous3", "Difference3");
+			//diffCalc("Current2", "Previous2", "Difference4");
+			//costCalc("Rate1", "Cost1");
+		}
+	</script>	
+	<style>
+		table, tr, td, th {
+			border: 1px solid black;
+			text-align: center;
+		}
+		input{
+			width: 100%
+			/*text-align: center;*/
+		}
+	</style>
+</head>
+<body>
+	<table style="width:100%">
+  <tr>
+    <th>Order</th>
+    <th>Current</th>
+    <th>Previous</th>
+	<th>Difference</th>
+	<th>Rate</th>
+	<th>Cost</th>
+	<th>Total</th>
+	<th>Need to Pay</th>
+  </tr>
+  <tr>
+    <td>Cold Water</td>
+    <td><input type="number" name="Current1" id="Current1"></td>
+    <td><input type="number" name="Previous1" id="Previous1"></td> 
+    <td id='Difference1'></td>
+    <td><input type="number" name="Rate1" id="Rate1" value="13.77"></td>
+    <td id="Cost1">6</td>
+    <td>7</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>Hot Water</td>
+    <td><input type="number" name="Current2" id="Current2"></td>
+    <td><input type="number" name="Previous2" id="Previous2"></td> 
+    <td id='Difference2'></td>
+    <td><input type="number" name="Rate2" id="Rate2" value="76.71"></td>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+  </tr>
+  <tr>
+     <td>Electric Power</td>
+    <td><input type="number" name="Current3" id="Current3"></td>
+    <td><input type="number" name="Previous3" id="Previous3"></td> 
+    <td id='Difference3'></td>
+    <td><input type="number" name="Rate3" id="Rate3" value="42.84"></td>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>Hot Water Discharge</td>
+    <td><input type="number" name="Current4"></td>
+    <td><input type="number" name="Previous4"></td> 
+    <td id='Difference4'></td>
+    <td><input type="number" name="Rate4" id="Rate4" value="6.93"></td>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+  </tr>
+</table>
+</body>
+</html>
