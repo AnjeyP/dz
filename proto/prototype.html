@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animal</title>
+	<script
+	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+	<script>
+		
+		function Animals (height, weight){
+			this.height = height;
+			this.weight = weight;
+		};
+		function Vegan (alias){
+			this.alias = alias;
+		}
+		function Predator (alias){
+			this.alias = alias;
+		}
+
+		function Cow (){};
+		function Mouse (){};
+		function Cat (){};
+		function Dog (){};
+
+		Vegan.prototype = Animals;
+		Predator.prototype = Animals;
+
+		Cow.prototype = Vegan;
+		Mouse.prototype = Vegan;
+		Cat.prototype = Predator;
+		Dog.prototype = Predator;
+
+		cow = new Cow();
+		cat = new Cat();
+		mouse = new Mouse();
+		dog = new Dog();
+
+			//teach how to eat
+			cow.prototype.sleep = true;
+			cow.prototype.run = true;
+			cow.prototype.eat = true;
+
+			//teach how to eat Vegans
+			cow.__proto__.eat = function(eat){
+				if (eat=="grass" || eat=="vegetable") return true;
+				else if (eat!="grass" || eat!="vegetable") return false;
+				else return console.log("Give "+this.name+" something to eat");
+			}
+			//teach how to eat Predators
+			cat.__proto__.eat = function(eat){
+				if (eat.name=="Vegan") return true;
+				else if (eat=="grass" || eat=="vegetable") return false;
+				else return console.log("Give "+this.name+" something to eat");
+			}
+
+		</script>
+		<script>
+			$(init);
+			function init(){
+
+	//checking section
+	$('button').on('click', function(){
+		var select1 = $('select:first').find('option:checked').val();
+		var select2 = $('select:last').find('option:checked').val();
+		switch (select1){
+			case "cow": 
+			var res1 = cow;
+			break;
+			case "mouse": 
+			var res1 = mouse;
+			break;
+			case "cat": 
+			var res1 = cat;
+			break;
+			case "dog": 
+			var res1 = dog;
+			break;
+		}
+		switch (select2){
+			case "cow": 
+			var res2 = cow;
+			break;
+			case "mouse": 
+			var res2 = mouse;
+			break;
+			case "cat": 
+			var res2 = cat;
+			break;
+			case "dog": 
+			var res2 = dog;
+			break;
+			case "vegetable": 
+			var res2 = "vegetable";
+			break;
+			case "grass": 
+			var res2 = "grass";
+			break;
+		}
+		if(res1.name=='Predator' && res2.name=='Vegan') $('textarea').text("it's ok'. Predators eat Vegans");
+		else if (res1.name=='Vegan' && typeof res2=='string') $('textarea').text("it's ok'. Vegans eat grass or vegetable");
+		else if (res1.name=='Predator' && res2.name=='Predator') $('textarea').text("it's not ok'. Predators don't eat Predators");
+		else if (res1.name=='Vegan' && res2.name=='Vegan') $('textarea').text("it's not ok'. Vegans don't eat Vegans");
+		else if (res1.name=='Vegan' && res2.name=='Predator') $('textarea').text("it's not ok'. Vegans don't eat Predators");
+		else $('textarea').text("it's not ok'. Predators don't eat grass or vegetable");
+	})
+}
+</script>
+</head>
+<body>
+	<p><textarea name="text"></textarea></p>
+	<p><select>
+		<option disabled>Choose Animal</option>
+		<option selected value="cow">cow</option>
+		<option value="mouse">mouse</option>
+		<option value="cat">cat</option>
+		<option value="dog">dog</option>
+	</select></p>
+	<p><select>
+		<option disabled>Choose Animal or food</option>
+		<option selected value="cow">cow</option>
+		<option value="mouse">mouse</option>
+		<option value="cat">cat</option>
+		<option value="dog">dog</option>
+		<option value="vegetable">vegetable</option>
+		<option value="grass">grass</option>
+	</select></p>
+	<button>Check</button>
+</body>
+
+</html>
