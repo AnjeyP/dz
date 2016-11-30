@@ -11,7 +11,7 @@
 #container div:hover{
 	box-shadow: 1px 1px 1px 1px #888888;
 }
-p{
+p, section{
 	max-width: 246px;
 	text-align: center;
 }
@@ -29,5 +29,26 @@ i{
 	float: right;
 	margin-right: 5px;
 	cursor: pointer;
-	
+}
+.description{
+	display: none;
+}
+a{
+	margin-right: 10px;
+}
+/* #container, #message{
+	position: relative;
+}
+#container{
+	z-index: 1;
+} */
+#message{
+	/* z-index: 2; */
+	display: none;
+}
+#message div{
+	border:1 px solid red;
+}
+#message div i{
+	margin: auto;
 }
