@@ -1,0 +1,33 @@
+#container{
+	max-width: 900px;
+}
+#container div{
+	float:left;
+	border:1px solid lightblue;
+	padding: 5px;
+	border-radius: 5px;
+	margin: 5px;
+}
+#container div:hover{
+	box-shadow: 1px 1px 1px 1px #888888;
+}
+p{
+	max-width: 246px;
+	text-align: center;
+}
+p, span{
+	font-size: 16px;
+
+}
+p:hover{
+	color:blue;
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+i{
+	float: right;
+	margin-right: 5px;
+	cursor: pointer;
+	
+}
