@@ -1,0 +1,268 @@
+<!-- 
+Queue project
+
+User story 1: There is a form containing the fields
+                name - string
+                surname - string
+                gender - string
+                age - number
+                dob - date of birth, oblect
+                lang - programming languages that user know, array
+User story 2: After user fills the form a menu pops up: use switch() to do it
+                a) add user
+                b) del user by list number
+                c) print all users' info 
+                d) sort by name, age, amount of languages desc
+                e) exit the program
+                 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+ 
+    <script>
+    
+
+    var user0 ={ //function-constructor for creation a user
+
+        name: null,
+        sname: null,
+        sex: null,
+        age: null,
+        dob: undefined,
+        lang: undefined
+
+    };
+    //create 3 users to fill a list
+    var user1 ={
+
+        name: "Andrey",
+        sname: "Parfenyuk",
+        sex: 'm',
+        age: 28,
+        dob: new Date(1987, 1, 20),
+        lang: ["Basic", "Pascal", "Java", "Javascript"]
+
+    };
+
+    var user2 ={
+
+        name: "Anton",
+        sname: "Igrunov",
+        sex: 'm',
+        age: 22,
+        dob: new Date(1987, 6, 5),
+        lang: ["Basic", "Pascal", "Java", "Javascript", "C++"]
+
+    };
+
+    var user3 ={
+
+        name: "Tanya",
+        sname: "Vlasova",
+        sex: 'f',
+        age: 25,
+        dob: new Date(1987, 8, 16),
+        lang: ["Java", "C++", "HTML", "CSS"]
+
+    };
+
+    var list = [];
+
+    list.push(user1);
+    list.push(user2);
+    list.push(user3);
+
+    function printUser(user){
+    for (e in user) 
+        document.write(user[e]+"</br>");
+    
+    }
+
+    // c) print all users' info 
+
+    function printList(list){
+
+        for (var i = 0; i < list.length; i++) {
+             printUser(list[i]);
+             document.write("<hr>");
+            
+        }
+                 
+    }
+
+    //auxilary function to get from user info about computer languages ne knows
+
+    var fullMas = function(){
+            var lang = [];
+            amount=+prompt("How many computer lang do you know?", 0);
+            for (var i = 0; i < amount; i++) {
+                lang[i]=prompt("Computer lang name", "");
+
+            };
+            return lang;
+            
+
+        }
+
+    //a) add user
+
+    function addUser(){
+        var user0 ={
+
+            name: null,
+            sname: null,
+            sex: null,
+            age: null,
+            dob: undefined,
+            lang: undefined
+
+        };
+        user0.name = prompt("User name", "");
+        user0.sname = prompt("User sname", "");
+        user0.sex = prompt("User sex m/f", "");
+        user0.age = +prompt("User age", "");
+        user0.dob = new Date(prompt("User dob yyyy, m, d", ""));
+        user0.lang = fullMas();
+        return user0;
+    }
+
+    //b) del user by list number
+
+    function delUser(){
+        var q = prompt("Enter the way you like to delete user from list: 1-name, 2-index", "");
+        switch (q) {
+                case "1":
+                    {
+                        var p = prompt("Enter user name");
+                        for (var i = 0; i < list.length; i++) 
+                        if (list[i].name==p)
+                       list.splice(i,1);
+                    }
+                    break;
+                case "2":
+                    {
+                        var p = prompt("Enter user index");
+                        list.splice(p,1);
+        
+                    }
+                    break;
+                default:
+                    {
+                        alert("Incorrect!");
+                    }
+                    break;
+        }
+       
+        
+    }
+
+    //d) sort by name, age, amount of languages desc
+
+    function sortUser(){
+
+        var alt = prompt("Enter the way you like to sort: 1-name, 2-age, 3-amount of lang desc", "");
+
+        switch (alt) {
+                case "1":
+                    {
+                        list.sort(function (a, b) {
+                              if (a.name < b.name) {
+                                return 1;
+                              }
+                              if (a.name > b.name) {
+                                return -1;
+                              }
+                              // a need to be equal b
+                              return 0;
+                            });
+                    }
+                    break;
+                case "2":
+                    {
+                       list.sort(function (a, b) {
+                              if (a.age < b.age) {
+                                return 1;
+                              }
+                              if (a.age > b.age) {
+                                return -1;
+                              }
+                              // a need to be equal b
+                              return 0;
+                            });
+                    }
+                    break;
+                case "3":
+                    {
+                        list.sort(function (a, b) {
+                              if (a.lang.length < b.lang.length) {
+                                return 1;
+                              }
+                              if (a.lang.length > b.lang.length) {
+                                return -1;
+                              }
+                              // a need to be equal b
+                              return 0;
+                            });
+                    }
+                    break;
+                default:
+                    {
+                        document.write("Wrong case!");
+                    }
+                    break;
+            }
+    }
+   
+    //list.push(addUser());
+    
+    
+    var exit = true;
+
+   do{
+    var v = prompt("Enter what do you want to do with users: 1-add, 2-del, 3-print, 4 - sort, 5 - exit", "");
+     switch (v) {
+            case "1":
+                {
+                    list.push(addUser());                    
+                   
+                    
+                }
+                break;
+            case "2":
+                {
+                    delUser();
+                }
+                break;
+            case "3":
+                {
+                    printList(list);
+                }
+                break;
+            case "4":
+                {
+                    sortUser();
+                }
+                break;
+            case "5":
+                {
+                    
+                    exit = false;
+
+                }
+                break;
+            default:
+                {
+                    document.write("You chose nothing! Good Bye!");
+                    exit = false;
+                }
+                break;
+    }
+}while (exit);
+    
+    </script>
+       
+</head>
+<body>
+</body>
+</html>
