@@ -35,20 +35,26 @@ i{
 }
 a{
 	margin-right: 10px;
+	
 }
-/* #container, #message{
-	position: relative;
+.green{
+	color: green;
 }
-#container{
+.red{
+	color: red;
+}
+#add_message, #dell_message{
+	background-color: lightgrey;
+	position: absolute;
+	top: 500px;
+	left: 300px;
 	z-index: 1;
-} */
-#message{
-	/* z-index: 2; */
 	display: none;
 }
-#message div{
-	border:1 px solid red;
+#add_message>p, #dell_message>p{
+	text-decoration: none;
 }
-#message div i{
-	margin: auto;
+#add_message>p:hover, #dell_message>p:hover{
+	text-decoration: none;
+	color: black;
 }
