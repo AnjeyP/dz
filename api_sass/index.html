@@ -58,6 +58,7 @@ var currencyAvailable = [{"id":"SEK","description":"SEK Sweden, kronor"},{"id":"
         beforeSend: function(xhr) { xhr.setRequestHeader("X-Mashape-Authorization", "W7sGbSpucfmshZT8FL1HRoXL2v6Jp1mBHcujsngsYKF2vFrc8e"); }// Enter here your Mashape key}
       });
   }
+  //reverse handler
   $('div').click(function(){
     var bufferText = $('#from option:checked').text();
     var bufferValue = $('#from option:checked').val();
