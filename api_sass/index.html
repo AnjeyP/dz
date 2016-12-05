@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <title>Mashape Query</title>
+  <link rel="stylesheet" href="../api_sass/css/common.css">
+</head>
+
+<body>
+  <h1>Simple currency converter</h1>
+  <a href="#"><div></div></a>
+  <form>
+    From:
+    <select id="from">
+      <option disabled>Choose currency</option>
+    </select>
+    from_amount:
+    <input type="number" id="from_amount" value="0">
+    TO:
+    <select id="to">
+      <option disabled>Choose currency</option>
+    </select>
+    to_amount
+    <input type="number" id="to_amount" value="0">
+    <input onclick="doIt()" type="button" value="Convert">
+  </form>
+</body>
+
+<script>
+//first part of API doesn't work properly, so I decided to recreate it in this way
+var currencyAvailable = [{"id":"SEK","description":"SEK Sweden, kronor"},{"id":"ATS","description":"ATS Austria, shilling"},{"id":"AUD","description":"AUD Australian, dollar"},{"id":"BEF","description":"BEF Belgien, franc"},{"id":"BRL","description":"BRL Brazilien, real"},{"id":"CAD","description":"CAD Canada, dollar"},{"id":"CHF","description":"CHF Switzerland, francs"},{"id":"CNY","description":"CNY China, yuan renminbi"},{"id":"CYP","description":"CYP Cyprus, pound"},{"id":"CZK","description":"CZK Czech Republic, koruna"},{"id":"DEM","description":"DEM Germany, mark"},{"id":"DKK","description":"DKK Denmark, krone"},{"id":"EEK","description":"EEK Estonian, kroon"},{"id":"ESP","description":"ESP Spain, pesetas"},{"id":"EUR","description":"EUR Euroland, euro"},{"id":"FIM","description":"FIM Finland, marka"},{"id":"FRF","description":"FRF France, franc"},{"id":"GBP","description":"GBP Great Britain, pound"},{"id":"GRD","description":"GRD Greece, drachmer"},{"id":"HKD","description":"HKD Hong Kong, dollar"},{"id":"HUF","description":"HUF Hungary, forint"},{"id":"IDR","description":"IDR Indonesia, rupiah"},{"id":"IEP","description":"IEP Ireland, pund"},{"id":"INR","description":"INR India, rupee"},{"id":"ISK","description":"ISK Iceland, kronor"},{"id":"ITL","description":"ITL Italy, lire"},{"id":"JPY","description":"JPY Japan, yen"},{"id":"KRW","description":"KRW South Korea, won"},{"id":"KWD","description":"KWD Kuwait, dinar"},{"id":"LTL","description":"LTL Lithuania,  litas"},{"id":"LVL","description":"LVL Latvia, lat"},{"id":"MAD","description":"MAD Morocko, dirham"},{"id":"MXN","description":"MXN Mexico, nuevo peso"},{"id":"MYR","description":"MYR Malaysia, ringgit"},{"id":"NLG","description":"NLG Dutchland, guilder"},{"id":"NOK","description":"NOK Norway, krone"},{"id":"NZD","description":"NZD New Zealand, dollar"},{"id":"PLN","description":"PLN Poland, zloty"},{"id":"PTE","description":"PTE Portugal, escudo"},{"id":"RUB","description":"RUB Russia, rouble"},{"id":"SAR","description":"SAR Saudi Arabia, riyal"},{"id":"SGD","description":"SGD Singapore, dollar"},{"id":"SIT","description":"SIT Slovenia, tolar"},{"id":"SKK","description":"SKK Slovakia, koruna"},{"id":"THB","description":"THB Thailand, baht"},{"id":"TRL","description":"TRL Turkey, lira"},{"id":"TRY","description":"TRY Turkey, new lira"},{"id":"USD","description":"USD US, dollar"},{"id":"ZAR","description":"ZAR South Africa, rand"}];
+
+  //filling the selelcts
+  for (var i=0; i<currencyAvailable.length; i++) {
+    $('#from option:last').after("<option value="+currencyAvailable[i].id+">"+currencyAvailable[i].description+"</option>");
+    $('#to option:last').after("<option value="+currencyAvailable[i].id+">"+currencyAvailable[i].description+"</option>");
+  }
+
+  //handler fo converting
+  function doIt() { 
+    if ($('#from_amount').val()==0) alert("enter some value in from_amount");
+    var parameters = {
+      "from":$('#from option:checked').val(),
+      "from_amount": $('#from_amount').val(),
+      "to":$('#to option:checked').val()
+    };
+    var output = $.ajax({
+        url: 'https://currencyconverter.p.mashape.com/', // The URL to the API. You can get this in the API page of the API you intend to consume
+        type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+        data: parameters, // Additional parameters here
+        dataType: 'json',
+        success: function(data) { document.getElementById('to_amount').value = data.to_amount; },
+        error: function(err) { alert(err); },
+        beforeSend: function(xhr) { xhr.setRequestHeader("X-Mashape-Authorization", "W7sGbSpucfmshZT8FL1HRoXL2v6Jp1mBHcujsngsYKF2vFrc8e"); }// Enter here your Mashape key}
+      });
+  }
+  $('div').click(function(){
+    var bufferText = $('#from option:checked').text();
+    var bufferValue = $('#from option:checked').val();
+    $('#from option:checked').text($('#to option:checked').text());
+    $('#from option:checked').val( $('#to option:checked').val());
+    $('#to option:checked').text(bufferText);
+    $('#to option:checked').val(bufferValue);
+  })
+
+</script>
+</html>
