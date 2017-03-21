@@ -1,0 +1,60 @@
+#container{
+	max-width: 900px;
+}
+#container div{
+	float:left;
+	border:1px solid lightblue;
+	padding: 5px;
+	border-radius: 5px;
+	margin: 5px;
+}
+#container div:hover{
+	box-shadow: 1px 1px 1px 1px #888888;
+}
+p, section{
+	max-width: 246px;
+	text-align: center;
+}
+p, span{
+	font-size: 16px;
+
+}
+p:hover{
+	color:blue;
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+i{
+	float: right;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.description{
+	display: none;
+}
+a{
+	margin-right: 10px;
+	
+}
+.green{
+	color: green;
+}
+.red{
+	color: red;
+}
+#add_message, #dell_message{
+	background-color: lightgrey;
+	position: absolute;
+	top: 500px;
+	left: 300px;
+	z-index: 1;
+	display: none;
+}
+#add_message>p, #dell_message>p{
+	text-decoration: none;
+}
+#add_message>p:hover, #dell_message>p:hover{
+	text-decoration: none;
+	color: black;
+}
